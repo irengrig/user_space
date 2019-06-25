@@ -1,0 +1,27 @@
+workspace(name = "user_space_package_manager_tests")
+
+# For now, have dependencies directly here, just at the stage of initial tests
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "bazel_skylib",
+    sha256 = "2ef429f5d7ce7111263289644d233707dba35e39696377ebab8b0bc701f7818e",
+    type = "tar.gz",
+    url = "https://github.com/bazelbuild/bazel-skylib/releases/download/0.8.0/bazel-skylib.0.8.0.tar.gz",
+)
+
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+
+bazel_skylib_workspace()
+
+http_archive(
+    name = "bazel_json",
+    sha256 = "f25e5631a482cbd59c7de7f566b189296c93b56ef2489f911cf7861d2c1d2ae1",
+    strip_prefix = "bazel_json-master",
+    url = "https://github.com/erickj/bazel_json/archive/master.zip",
+)
+
+local_repository(
+    name = "user_space_package_manager",
+    path = "..",
+)

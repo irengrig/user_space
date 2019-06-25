@@ -1,0 +1,47 @@
+workspace(name = "framework")
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# below lines should be somehow removed
+http_archive(
+    name = "bazel_skylib",
+    sha256 = "2ef429f5d7ce7111263289644d233707dba35e39696377ebab8b0bc701f7818e",
+    type = "tar.gz",
+    url = "https://github.com/bazelbuild/bazel-skylib/releases/download/0.8.0/bazel-skylib.0.8.0.tar.gz",
+)
+
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+
+bazel_skylib_workspace()
+
+http_archive(
+    name = "bazel_json",
+    sha256 = "f25e5631a482cbd59c7de7f566b189296c93b56ef2489f911cf7861d2c1d2ae1",
+    strip_prefix = "bazel_json-master",
+    url = "https://github.com/erickj/bazel_json/archive/master.zip",
+)
+# above lines should be somehow removed
+
+local_repository(
+    name = "user_space_package_manager",
+    path = "../..",
+)
+
+# this is cheating, in reality urls will be used, not local repositories
+# but for simplicity
+local_repository(
+    name = "utility_for_sources",
+    path = "../utility",
+)
+
+load("@user_space_package_manager//def:generate_manifest.bzl", "generate_http_archives")
+
+generate_http_archives(
+    name = "generated_workspace",
+    manifest = "@framework//:manifest.json",
+    this_module_name = "framework",
+)
+
+load("@generated_workspace//:resolved_modules.bzl", "generate_macro")
+
+generate_macro()

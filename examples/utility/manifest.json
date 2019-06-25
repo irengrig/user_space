@@ -1,0 +1,30 @@
+{
+    "name": "utility",
+    "head": "5.1.0",
+    "versions": {
+        "5.1.0": {
+            "url": "",
+            "workspace_fragment": "native.local_repository(name = 'utility', path = '../utility') # version 5.1",
+            "sha256": "",
+            "bazel": "0.26-",
+            "deps": {
+                "framework": {
+                    "version": "1.2.0-1.2.3",
+                    "manifest_url": "should not be used in this test"
+                }
+            }
+        },
+        "5.0.0": {
+            "url": "",
+            "workspace_fragment": "native.local_repository(name = 'utility', path = '../utility') # version 5.0",
+            "sha256": "",
+            "bazel": "0.24-0.25",
+            "deps": {
+                "framework": {
+                    "version": "0.0.1",
+                    "manifest_url": "should not be used in this test"
+                }
+            }
+        }
+    }
+}

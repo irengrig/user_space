@@ -1,0 +1,30 @@
+{
+    "name": "framework",
+    "head": "1.2.3",
+    "versions": {
+        "1.2.3": {
+            "url": "",
+            "workspace_fragment": "should not be written",
+            "sha256": "",
+            "bazel": "0.26-",
+            "deps": {
+                "utility": {
+                    "version": "5.0.0",
+                    "manifest_url": "@utility_for_sources//:manifest.json"
+                }
+            }
+        },
+        "1.2.0": {
+            "url": "",
+            "workspace_fragment": "should not be written",
+            "sha256": "",
+            "bazel": "0.24-0.25",
+            "deps": {
+                "utility": {
+                    "version": "5.1.0",
+                    "manifest_url": "@utility_for_sources//:manifest.json"
+                }
+            }
+        }
+    }
+}
